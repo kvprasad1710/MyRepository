@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="Product" table="ProdTab">
+		<id name="pid" column="pid">
+		<generator class="assigned"></generator>
+		</id>
+		<discriminator column="discol" type="string" length="6"></discriminator>
+		<property name="pname" column="ProdName"></property>
+		<property name="price" column="Price"></property>
+		<subclass name="Cheque" discriminator-value="cq">
+	     <property name="chqType" column="ChequeType" length="8"></property>
+	</subclass>
+	<subclass name="CreditCard" discriminator-value="cc">
+	     <property name="cardType" column="CreditType" length="8"></property>
+	</subclass>
+	</class>
+</hibernate-mapping>
